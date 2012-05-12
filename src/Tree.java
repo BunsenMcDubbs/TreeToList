@@ -130,13 +130,13 @@ public class Tree {
 			leftHead = setHead(subRoot);
 		}
 		
-		link(leftHead, subRoot);
 		
 		TreeNode rightHead = convert(tempRight);
 		if(rightHead == null)
 			rightHead = setHead(subRoot);
 		
-		
+		subRoot = setHead(subRoot);
+		link(leftHead, subRoot);
 		link(leftHead, rightHead);
 		
 //		TreeNode leftHead = convert(subRoot.getLeft());
@@ -176,7 +176,8 @@ public class Tree {
 	 */
 	private TreeNode setHead(TreeNode head) {
 		
-		head.setRight(head);
+		if(head.getRight() == null)
+			head.setRight(head);
 		head.setLeft(head);
 		
 		return head;
@@ -196,12 +197,11 @@ public class Tree {
 			return setHead(firstHead);
 		
 		TreeNode firstTail = firstHead.getLeft();
-//		if(firstTail == null)
-//			firstTail = getFarthestRight(firstHead);
+		if(firstTail == null)
+			firstTail = getFarthestRight(firstHead);
 		TreeNode secondTail = secondHead.getLeft();
-//		if(secondTail == null)
-//			secondTail = getFarthestRight(secondHead);
-		
+		if(secondTail == null)
+			secondTail = getFarthestRight(secondHead);
 		firstTail.setRight(secondHead);
 		secondHead.setLeft(firstTail);
 		

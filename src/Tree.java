@@ -52,6 +52,11 @@ public class Tree {
 		return orderedToString(root);
 	}
 	
+	/**
+	 * Returns a ordered string representation of the tree
+	 * @param root
+	 * @return
+	 */
 	public String orderedToString(TreeNode root){
 		
 		if(root == null)
@@ -68,6 +73,11 @@ public class Tree {
 		return preorderToString(root);
 	}
 	
+	/**
+	 * Returns a pre order string representation of the tree
+	 * @param root
+	 * @return
+	 */
 	public String preorderToString(TreeNode root){
 		
 		if(root == null)
@@ -84,6 +94,11 @@ public class Tree {
 		return postorderToString(root);
 	}
 	
+	/**
+	 * Returns a post order string representation of the tree
+	 * @param root
+	 * @return
+	 */
 	public String postorderToString(TreeNode root){
 		
 		if(root == null)
@@ -110,12 +125,19 @@ public class Tree {
 		this.root = root;
 	}
 	
+	/**
+	 * Starts the conversion of the tree into a linked list
+	 */
 	public void convert(){
 		root = convert(root);
 		linked = true;
 	}
 	
-	//BROKEN
+	/**
+	 * Recursively converts the Tree into a linked list that is ordered
+	 * @param subRoot
+	 * @return
+	 */
 	public TreeNode convert(TreeNode subRoot){
 		if(subRoot == null)
 			return null;
@@ -139,32 +161,6 @@ public class Tree {
 		link(leftHead, subRoot);
 		link(leftHead, rightHead);
 		
-//		TreeNode leftHead = convert(subRoot.getLeft());
-//		if(leftHead == null)
-//			leftHead = setHead(subRoot);
-//		{
-//			TreeNode temp = leftHead.getLeft();
-//			temp.setRight(subRoot);
-//			subRoot.setLeft(temp);
-//		}
-//		
-//		TreeNode rightHead = convert(subRoot.getRight());
-//		if(rightHead == null)
-//			rightHead = setHead(subRoot);
-//		TreeNode tempRightLast = rightHead.getLeft();
-//		{
-//			rightHead.setLeft(subRoot);
-//			subRoot.setRight(rightHead);
-//		}
-//		
-//		{
-//			leftHead.setLeft(tempRightLast);
-//			tempRightLast.setRight(leftHead);
-//		}
-		
-//		link(leftHead, subRoot);
-//		link(leftHead, rightHead);
-	
 		return leftHead;
 	}
 	
@@ -183,6 +179,11 @@ public class Tree {
 		return head;
 	}
 	
+	/**
+	 * Returns the node at the farthest right of the roo
+	 * @param root node
+	 * @return
+	 */
 	private TreeNode getFarthestRight(TreeNode root) {
 		TreeNode curr = root.getRight();
 		while(curr.getRight() != null){
@@ -191,6 +192,13 @@ public class Tree {
 		return curr;
 	}
 	
+	/**
+	 * Links two linked lists together
+	 * @param firstHead -- the head of the first linked list
+	 * @param secondHead -- the head of the second linked list to be linked to
+	 * the end of the first
+	 * @return the firstHead after linked to the second list
+	 */
 	private TreeNode link(TreeNode firstHead, TreeNode secondHead){
 		
 		if(firstHead == secondHead)
@@ -211,6 +219,10 @@ public class Tree {
 		return firstHead;
 	}
 
+	/**
+	 * The toString after the tree is converted to a linked list
+	 * @return
+	 */
 	private String linkedToString() {
 		String s = "";
 		TreeNode curr = root.getRight();

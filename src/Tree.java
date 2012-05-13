@@ -152,7 +152,6 @@ public class Tree {
 			leftHead = setHead(subRoot);
 		}
 		
-		
 		TreeNode rightHead = convert(tempRight);
 		if(rightHead == null)
 			rightHead = setHead(subRoot);
@@ -161,6 +160,7 @@ public class Tree {
 		link(leftHead, subRoot);
 		link(leftHead, rightHead);
 		
+		//FIX
 		return leftHead;
 	}
 	
@@ -172,8 +172,7 @@ public class Tree {
 	 */
 	private TreeNode setHead(TreeNode head) {
 		
-		if(head.getRight() == null)
-			head.setRight(head);
+		head.setRight(head);
 		head.setLeft(head);
 		
 		return head;

@@ -146,21 +146,21 @@ public class Tree {
 			return subRoot;
 		}
 		
-		TreeNode leftHead = convert(subRoot.getLeft());
-		TreeNode tempRight = subRoot.getRight();
-		if(leftHead == null){
-			leftHead = setHead(subRoot);
-		}
-		
-		TreeNode rightHead = convert(tempRight);
-		if(rightHead == null)
-			rightHead = setHead(subRoot);
-		
+		TreeNode left = subRoot.getLeft();
+		TreeNode right = subRoot.getRight();
 		subRoot = setHead(subRoot);
-		link(leftHead, subRoot);
-		link(leftHead, rightHead);
 		
-		//FIX
+		TreeNode leftHead = convert(left);
+		if(leftHead == null)
+			leftHead = subRoot;
+		TreeNode rightHead = convert(right);
+		if(rightHead == null)
+			rightHead = subRoot;
+		
+		link(leftHead, subRoot);
+		if(rightHead != subRoot)
+			link(leftHead, rightHead);
+		
 		return leftHead;
 	}
 	
